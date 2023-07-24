@@ -1,12 +1,18 @@
 ﻿using CL_Inventory_MGMT_Console_App;
+using codelou_inventory_mgmt_console_app;
 using System.Text.Json;
+
+
 
 internal class Program
 {
     
     private static void Main(string[] args)
     {
-        Console.WriteLine("Type 1 to add a product");
+        var productLogic = new ProductLogic();
+
+        Console.WriteLine("Type '1' to add a product");
+        Console.WriteLine("Type '2' to retrieve a product");
         Console.WriteLine("Type 'exit' to quit");
         string userInput = Console.ReadLine();
 
@@ -39,8 +45,8 @@ internal class Program
                     Console.WriteLine("Is the product kitten food? Enter 'true' or 'false'");
                     catFood.KittenFood = bool.Parse(Console.ReadLine());
 
-                    Console.WriteLine(JsonSerializer.Serialize(catFood));
-                    Console.WriteLine(catFood.KittenFood);
+                    productLogic.AddProduct(catFood);
+                    Console.WriteLine("The product was added");
 
                 }
 
@@ -66,8 +72,33 @@ internal class Program
                     Console.WriteLine("Type the material of the product");
                     dogLeash.Material = Console.ReadLine();
 
-                    Console.WriteLine(JsonSerializer.Serialize(dogLeash));
+                    productLogic.AddProduct(dogLeash);
+                    Console.WriteLine("The product was added");
+
                 }
+
+            }
+            else if (userInput == "2")
+            {
+                Console.WriteLine("Type '1' to search a cat food. Type '2' to search a dog leash");
+                userInput = Console.ReadLine();
+
+                if (userInput == "1")
+                {
+                    Console.WriteLine("Type the name of the product");
+                    userInput = Console.ReadLine();
+                    Console.WriteLine(productLogic.GetDogLeashByName(userInput));
+                }
+                else if (userInput == "2")
+                {
+                    Console.WriteLine("Type the name of the product");
+                    userInput = Console.ReadLine();
+                    Console.WriteLine(productLogic.GetCatFoodByName(userInput));
+
+                }
+               
+
+
 
             }
 
