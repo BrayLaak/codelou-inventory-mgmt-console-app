@@ -11,5 +11,13 @@ namespace CL_Inventory_MGMT_Console_App
         public double WeightPounds { get; set; }
 
         public bool KittenFood { get; set; }
+
+        public override void DisplayProperties()
+        {
+            base.DisplayProperties();
+            Console.WriteLine($"WeightPounds: {WeightPounds}");
+            Console.WriteLine($"KittenFood: {KittenFood}");
+        }
+
     }
 }

@@ -12,7 +12,7 @@ internal class Program
         var productLogic = new ProductLogic();
 
         Console.WriteLine("Type '1' to add a product");
-        Console.WriteLine("Type '2' to retrieve a product");
+        Console.WriteLine("Type '2' to search a product");
         Console.WriteLine("Type 'exit' to quit");
         string userInput = Console.ReadLine();
 
@@ -87,15 +87,17 @@ internal class Program
                 {
                     Console.WriteLine("Type the name of the product");
                     userInput = Console.ReadLine();
-                    Console.WriteLine(productLogic.GetDogLeashByName(userInput));
+                    CatFood answer = productLogic.GetCatFoodByName(userInput);
+                    answer.DisplayProperties();
                 }
                 else if (userInput == "2")
                 {
                     Console.WriteLine("Type the name of the product");
                     userInput = Console.ReadLine();
-                    Console.WriteLine(productLogic.GetCatFoodByName(userInput));
-
+                    var answer = productLogic.GetDogLeashByName(userInput);
+                    answer.DisplayProperties();
                 }
+
                
 
 
@@ -103,6 +105,7 @@ internal class Program
             }
 
             Console.WriteLine("Press 1 to add a product");
+            Console.WriteLine("Type '2' to search a product");
             Console.WriteLine("Type 'exit' to quit");
             userInput = Console.ReadLine();
         }

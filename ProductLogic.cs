@@ -46,7 +46,15 @@ namespace codelou_inventory_mgmt_console_app
         
         public CatFood GetCatFoodByName(string name) 
         {
-            return _catFoodDict[name];
+            if (_catFoodDict.TryGetValue(name, out CatFood value))
+            {
+                return _catFoodDict[name];
+            }
+            else
+            {
+                Console.WriteLine("The product was not found.");
+                return null;
+            }
         }
         public List<Product> GetAllProducts() 
         { 

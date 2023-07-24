@@ -10,5 +10,12 @@ namespace CL_Inventory_MGMT_Console_App
     {
         public int LengthInches { get; set; }
         public string Material { get; set; }
+
+        public override void DisplayProperties()
+        {
+            base.DisplayProperties();
+            Console.WriteLine($"LengthInches: {LengthInches}");
+            Console.WriteLine($"Material: {Material}");
+        }
     }
 }
