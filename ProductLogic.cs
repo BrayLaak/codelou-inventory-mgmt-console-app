@@ -24,7 +24,7 @@ namespace codelou_inventory_mgmt_console_app
             if (product is DogLeash) 
                 _dogLeashDict.Add(product.Name, product as DogLeash);
             else if (product is CatFood)
-                _catFoodDict.Add(product.Name, product as  CatFood);
+                _catFoodDict.Add(product.Name, product as CatFood);
             
             _products.Add(product);
         }

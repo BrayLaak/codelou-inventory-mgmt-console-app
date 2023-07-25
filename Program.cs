@@ -10,11 +10,7 @@ internal class Program
     private static void Main(string[] args)
     {
         var productLogic = new ProductLogic();
-
-        Console.WriteLine("Type '1' to add a product");
-        Console.WriteLine("Type '2' to search a product");
-        Console.WriteLine("Type 'exit' to quit");
-        string userInput = Console.ReadLine();
+        string userInput = MenuOptions();
 
         while (userInput.ToLower() != "exit")
         {
@@ -98,16 +94,20 @@ internal class Program
                     answer.DisplayProperties();
                 }
 
-               
-
-
 
             }
 
-            Console.WriteLine("Press 1 to add a product");
-            Console.WriteLine("Type '2' to search a product");
-            Console.WriteLine("Type 'exit' to quit");
-            userInput = Console.ReadLine();
+            userInput = MenuOptions();
         }
+    }
+
+    private static string MenuOptions()
+    {
+        string userInput;
+        Console.WriteLine("Press 1 to add a product");
+        Console.WriteLine("Type '2' to search a product");
+        Console.WriteLine("Type 'exit' to quit");
+        userInput = Console.ReadLine();
+        return userInput;
     }
 }
