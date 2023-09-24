@@ -31,6 +31,16 @@ namespace codelou_inventory_mgmt_console_app
 
         public DogLeash GetDogLeashByName(string name)
         {
+            try
+            {
+                return _dogLeashDict[name];
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+            /*
             if (_dogLeashDict.TryGetValue(name, out DogLeash value))
             {
                 return _dogLeashDict[name];
@@ -41,6 +51,7 @@ namespace codelou_inventory_mgmt_console_app
                 Console.WriteLine("The product was not found.");
                 return null;
             }
+            */
             
         }
         

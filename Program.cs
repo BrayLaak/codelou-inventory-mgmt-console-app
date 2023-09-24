@@ -91,7 +91,17 @@ internal class Program
                     Console.WriteLine("Type the name of the product");
                     userInput = Console.ReadLine();
                     var answer = productLogic.GetDogLeashByName(userInput);
-                    answer.DisplayProperties();
+                    
+                    if (answer == null)
+                    {
+                        Console.WriteLine("The product was not found.");
+                    }
+                    else
+                    {
+                        answer.DisplayProperties();
+                    }
+                    
+                    
                 }
 
 
