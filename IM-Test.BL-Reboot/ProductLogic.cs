@@ -1,5 +1,4 @@
-﻿using CL_Inventory_MGMT_Console_App;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -103,14 +102,10 @@ namespace IMTest.BL
 
         public decimal GetTotalPriceOfInventory()
         {
-            // Use the InStock extension method to get a list of in-stock products
-            List<Product> inStockProducts = _products.InStock();
-
-            // Use the Sum method to calculate the total price
-            decimal totalPrice = inStockProducts.Sum(x => x.Price);
-
+            decimal totalPrice = _products.Sum(product => product.Price * product.Quantity);
             return totalPrice;
         }
+
 
         public void PrintInStockProductNames()
         {
