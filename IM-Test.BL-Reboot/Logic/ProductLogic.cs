@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using IMTest.BL.Interfaces;
+using IMTest.BL.Models;
+using IMTest.BL.Extensions;
 
-namespace IMTest.BL
+namespace IMTest.BL.Logic
 {
- /// <summary>
- /// 
- /// </summary>
     public class ProductLogic : IProductLogic
     {
         private List<Product> _products;
@@ -17,43 +15,32 @@ namespace IMTest.BL
 
         public ProductLogic()
         {
-            _products = new List<Product>();
+            InitializeTestData();
+        }
 
-            _products.Add(new Product()
+        // Initialize test data for demonstration
+        private void InitializeTestData()
+        {
+            _products = new List<Product>
             {
-                Description = "test",
-                Name = "test",
-                Price = 1,
-                Quantity = 1,
-            });
+                new Product { Description = "test", Name = "test", Price = 1, Quantity = 1 },
+                new Product { Description = "test2", Name = "test2", Price = 2, Quantity = 2 },
+                new Product { Description = "test3", Name = "test3", Price = 3, Quantity = 0 }
+            };
 
-            _products.Add(new Product()
-            {
-                Description = "test2",
-                Name = "test2",
-                Price = 2,
-                Quantity = 2,
-            });
-
-            _products.Add(new Product()
-            {
-                Description = "test3",
-                Name = "test3",
-                Price = 3,
-                Quantity = 0,
-            });
-        
-
-        _dogLeashDict = new Dictionary<string, DogLeash>();
+            _dogLeashDict = new Dictionary<string, DogLeash>();
             _catFoodDict = new Dictionary<string, CatFood>();
         }
-        public void AddProduct(Product product) 
+
+        // Implement interface methods...
+
+        public void AddProduct(Product product)
         {
-            if (product is DogLeash) 
+            if (product is DogLeash)
                 _dogLeashDict.Add(product.Name, product as DogLeash);
             else if (product is CatFood)
                 _catFoodDict.Add(product.Name, product as CatFood);
-            
+
             _products.Add(product);
         }
 
@@ -67,23 +54,9 @@ namespace IMTest.BL
             {
                 return null;
             }
-
-            /*
-            if (_dogLeashDict.TryGetValue(name, out DogLeash value))
-            {
-                return _dogLeashDict[name];
-            }
-            
-            else
-            {
-                Console.WriteLine("The product was not found.");
-                return null;
-            }
-            */
-            
         }
-        
-        public CatFood GetCatFoodByName(string name) 
+
+        public CatFood GetCatFoodByName(string name)
         {
             if (_catFoodDict.TryGetValue(name, out CatFood value))
             {
@@ -95,17 +68,18 @@ namespace IMTest.BL
                 return null;
             }
         }
-        public List<Product> GetAllProducts() 
-        { 
+
+        public List<Product> GetAllProducts()
+        {
             return _products;
         }
 
         public decimal GetTotalPriceOfInventory()
         {
-            decimal totalPrice = _products.Sum(product => product.Price * product.Quantity);
+            // Calculate the total price of in-stock products
+            decimal totalPrice = _products.InStock().Sum(x => x.Price);
             return totalPrice;
         }
-
 
         public void PrintInStockProductNames()
         {
@@ -116,8 +90,7 @@ namespace IMTest.BL
                 Console.WriteLine(item.Name);
             }
 
-            Console.WriteLine("");
+            Console.WriteLine();
         }
-
     }
 }

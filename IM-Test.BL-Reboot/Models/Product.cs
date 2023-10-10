@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace IMTest.BL
+namespace IMTest.BL.Models
 {
+    /// <summary>
+    /// Represents a generic product.
+    /// </summary>
     public class Product
     {
         public string Name { get; set; }
@@ -21,6 +20,4 @@ namespace IMTest.BL
             Console.WriteLine($"Description: {Description}");
         }
     }
-
 }
-

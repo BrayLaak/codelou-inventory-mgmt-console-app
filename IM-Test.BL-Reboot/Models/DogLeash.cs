@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace IMTest.BL
+namespace IMTest.BL.Models
 {
+    /// <summary>
+    /// Represents a dog leash product.
+    /// </summary>
     public class DogLeash : Product
     {
         public int LengthInches { get; set; }
